@@ -1,0 +1,5 @@
+{
+  "name": "Aegis Master Hub",
+  "description": "Autonomous Enterprise Control Room for multi-agent portfolio management, featuring real-time event bus, dynamic pricing, and product incubator logic.",
+  "requestFramePermissions": []
+}

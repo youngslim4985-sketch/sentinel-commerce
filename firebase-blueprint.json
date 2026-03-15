@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Brand": {
+      "title": "Brand",
+      "description": "A business brand within the portfolio.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "name": { "type": "string", "description": "Brand name" },
+        "profit": { "type": "number", "description": "Net profit" },
+        "burn": { "type": "number", "description": "Ad spend / operational burn" },
+        "velocity": { "type": "number", "description": "Sales velocity score (0-1)" },
+        "status": { "type": "string", "enum": ["ACTIVE", "INCUBATING", "PAUSED"], "description": "Current operational status" },
+        "orders": { "type": "integer", "description": "Monthly order count" },
+        "ownerId": { "type": "string", "description": "UID of the founder" }
+      },
+      "required": ["id", "name", "profit", "burn", "velocity", "status", "orders", "ownerId"]
+    },
+    "AgentEvent": {
+      "title": "Agent Event",
+      "description": "A single event emitted by an autonomous agent.",
+      "type": "object",
+      "properties": {
+        "agent": { "type": "string", "description": "Name of the agent (e.g., PricingAgent)" },
+        "type": { "type": "string", "description": "Event type (e.g., PRICE_ADJUSTED)" },
+        "payload": { "type": "object", "description": "Event-specific data" },
+        "timestamp": { "type": "string", "format": "date-time", "description": "When the event occurred" },
+        "ownerId": { "type": "string", "description": "UID of the founder" }
+      },
+      "required": ["agent", "type", "payload", "timestamp", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/brands/{brandId}": {
+      "schema": "Brand",
+      "description": "Collection of portfolio brands."
+    },
+    "/events/{eventId}": {
+      "schema": "AgentEvent",
+      "description": "Historical log of agent actions."
+    }
+  }
+}
